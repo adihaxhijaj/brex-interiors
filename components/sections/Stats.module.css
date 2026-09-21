@@ -1,0 +1,59 @@
+/*
+ * Reviews marquee — ported from _legacy/CSS/stats.css.
+ * Kept as a CSS Module because the infinite keyframe scroll, the edge mask,
+ * and the hover-to-pause behaviour don't translate cleanly to Tailwind utilities.
+ */
+
+.trackOuter {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 3%,
+    black 97%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 3%,
+    black 97%,
+    transparent 100%
+  );
+}
+
+.track {
+  display: flex;
+  gap: 12px;
+  width: max-content;
+}
+
+.goLeft {
+  animation: goL 44s linear infinite;
+}
+
+.goRight {
+  animation: goR 50s linear infinite;
+}
+
+.trackOuter:hover .track {
+  animation-play-state: paused;
+}
+
+@keyframes goL {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes goR {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
